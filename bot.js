@@ -1,12 +1,10 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits, REST, Routes, EmbedBuilder } = require('discord.js');
 
-// Initialisiere den Client
 const client = new Client({
     intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
 });
 
-// Datenbank-Ersatz für Benutzerkonten und Shop
 const konten = {};
 const shopItems = {
     'Führerschein': { preis: 1000,bescschreibung: 'Führerschein'},
