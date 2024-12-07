@@ -1,19 +1,16 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits, REST, Routes, EmbedBuilder } = require('discord.js');
 
-// Initialisiere den Client
 const client = new Client({
     intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
 });
 
-// Datenbank-Ersatz für Benutzerkonten und Shop
 const konten = {};
 const shopItems = {
     'Führerschein': { preis: 1000,bescschreibung: 'Führerschein'},
     'Waffeschein': { preis: 10000,bescschreibung: 'Waffenschein'},
 };
 
-// Definiere die Slash-Commands
 const commands = [
     {
         name: 'konto',
@@ -41,7 +38,6 @@ const commands = [
     },
 ];
 
-// Registriere die Slash-Commands
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 
 (async () => {
@@ -56,12 +52,10 @@ const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
     }
 })();
 
-// Event-Listener für den Bot
 client.once('ready', () => {
     console.log(`Eingeloggt als ${client.user.tag}!`);
 });
 
-// Event-Handler für Slash-Commands
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
 
